@@ -1,3 +1,9 @@
+/*
+Object of Quotes with different fragments or parts of sentences. The describe function
+uses Math.random to get a random number to a max of the length in the array
+newQuote then adds these fragments together and the value is returned
+*/
+
 let newQuote;
 const Quotes = {
     init: function (fragmentList1, fragmentList2, fragmentList3, fragmentList4){
@@ -38,3 +44,26 @@ life.init([
         ".",
         "!!!!!"
     ]);
+
+const work = Object.create(Quotes);
+work.init(
+    [
+        "When we work",
+        "if we work hard",
+        "while we work"
+    ],
+    [
+        "we do something we like",
+        "we achieve success",
+        "we do what we want to do"
+    ],
+    [
+        "and we earn lots of money",
+        "and dont have to worry about anything",
+        "and become successful"
+    ],
+    [
+        "!",
+        "."
+    ]
+);
