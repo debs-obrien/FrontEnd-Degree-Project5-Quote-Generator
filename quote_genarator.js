@@ -5,7 +5,7 @@ let newQuote;
 container.appendChild(p);
 container.appendChild(button);
 button.innerHTML = 'Print Quote';
-p.innerHTML = 'test';
+p.innerHTML = '';
 
 const Quotes = {
     init: function (fragmentList1, fragmentList2, fragmentList3, fragmentList4){
@@ -28,7 +28,8 @@ const life = Object.create(Quotes);
 life.init([
         "Being happy",
         "Living alone",
-        "Never doing"
+        "Never doing",
+        "Having fun"
     ],
     [
         "is something we do",
@@ -42,5 +43,13 @@ life.init([
     ],
     [
         "!",
-        "."
+        ".",
+        "!!!!!"
     ]);
+
+p.innerHTML = 'Click the button to print a quote';
+button.addEventListener('click', function(e){
+    e.preventDefault();
+    p.innerHTML = life.describe();
+    button.innerHTML = 'Print a different Quote'
+});
