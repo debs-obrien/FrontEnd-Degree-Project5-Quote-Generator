@@ -17,6 +17,7 @@ form.appendChild(button);
 button.innerHTML = 'Print Quote';
 
 p.innerHTML = 'Click the button to print a quote';
+p.className = "message";
 
 function createRadios(radio, name, value, label, text){
     radio = document.createElement('input');
@@ -50,14 +51,18 @@ function selectAmount(quote){
     let amount = amountInput.value;
     if(!quote){
         p.innerHTML= 'Please choose the type of quote';
+        p.className = "error";
     }
     else if(!amount){
         p.innerHTML= 'Please choose an amount';
+        p.className = "error";
     }
     else if(amount > 5 || amount <= 0){
         p.innerHTML= 'Sorry you can only between 1 and 5 quotes';
+        p.className = "error";
     }else{
         p.innerHTML ='';
+        p.className = "quote";
         for(let i=0; i<amountInput.value; i+=1){
             showQuotes(quote);
         }
