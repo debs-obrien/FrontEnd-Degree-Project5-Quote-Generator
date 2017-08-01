@@ -1,55 +1,87 @@
-let p = document.createElement('p');
-let button = document.createElement('button');
-let container = document.getElementById('quote_container');
-let newQuote;
+const p = document.createElement('p');
+const button = document.createElement('button');
+const container = document.getElementById('quote_container');
+const form = document.createElement('form');
+const amountInput = document.createElement('input');
+
+amountInput.setAttribute('type', 'text');
+amountInput.setAttribute('value', '');
+amountInput.setAttribute('placeholder', 'type a number');
+
+
 container.appendChild(p);
-container.appendChild(button);
+container.appendChild(form);
+form.appendChild(amountInput);
+form.appendChild(button);
+
 button.innerHTML = 'Print Quote';
-p.innerHTML = '';
-
-const Quotes = {
-    init: function (fragmentList1, fragmentList2, fragmentList3, fragmentList4){
-        this.fragmentList1 = fragmentList1;
-        this.fragmentList2 = fragmentList2;
-        this.fragmentList3 = fragmentList3;
-        this.fragmentList4 = fragmentList4;
-    },
-    describe: function(){
-        const fragment1 = Math.floor(Math.random() * (this.fragmentList1.length));
-        const fragment2 = Math.floor(Math.random() * (this.fragmentList2.length));
-        const fragment3 = Math.floor(Math.random() * (this.fragmentList3.length));
-        const fragment4 = Math.floor(Math.random() * (this.fragmentList4.length));
-        newQuote = (this.fragmentList1[fragment1] + " " + this.fragmentList2[fragment2] + " " + this.fragmentList3[fragment3] + this.fragmentList4[fragment4]);
-        return newQuote;
-    }
-};
-
-const life = Object.create(Quotes);
-life.init([
-        "Being happy",
-        "Living alone",
-        "Never doing",
-        "Having fun"
-    ],
-    [
-        "is something we do",
-        "is what we need",
-        "is when we shouldn't do"
-    ],
-    [
-        "even though we know we shouldn't",
-        "although we think we don't",
-        "just incase its not for us"
-    ],
-    [
-        "!",
-        ".",
-        "!!!!!"
-    ]);
 
 p.innerHTML = 'Click the button to print a quote';
-button.addEventListener('click', function(e){
+p.className = "message";
+
+function createRadios(radio, name, value, label, text){
+    radio = document.createElement('input');
+    radio.setAttribute('type', 'radio');
+    radio.setAttribute('name', name);
+    radio.setAttribute('class', name);
+    radio.setAttribute('id', value);
+    radio.setAttribute('value', value);
+    label = document.createElement('label');
+    label.setAttribute('for', value);
+    label.innerHTML = text;
+    form.appendChild(label);
+    form.appendChild(radio);
+}
+
+createRadios('select1', 'type', 'life', 'label1', 'Life');
+createRadios('select2', 'type', 'work','label2', 'Work');
+
+function getRadioCheckedValue() {
+    let radios = document.getElementsByName('type');
+    for (let i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            console.log(radios[i].value);
+            return radios[i].value;
+        }
+    }
+}
+
+function selectAmount(quote){
+    amountInput.setAttribute('value', amountInput.value);
+    let amount = amountInput.value;
+    if(!quote){
+        p.innerHTML= 'Please choose the type of quote';
+        p.className = "error";
+    }
+    else if(!amount){
+        p.innerHTML= 'Please choose an amount';
+        p.className = "error";
+    }
+    else if(amount > 5 || amount <= 0){
+        p.innerHTML= 'Sorry you can only between 1 and 5 quotes';
+        p.className = "error";
+    }else{
+        p.innerHTML ='';
+        p.className = "quote";
+        for(let i=0; i<amountInput.value; i+=1){
+            showQuotes(quote);
+        }
+        button.innerHTML = 'Print more Quotes';
+        amountInput.value = '';
+    }
+
+}
+function showQuotes(quote){
+    if(quote==='life'){
+        p.innerHTML += life.describe() + "<br>";
+    }else{
+        p.innerHTML += work.describe() + "<br>";
+    }
+}
+
+
+form.addEventListener('submit', (e) => {
     e.preventDefault();
-    p.innerHTML = life.describe();
-    button.innerHTML = 'Print a different Quote'
+    let quote = getRadioCheckedValue();
+    selectAmount(quote);
 });
