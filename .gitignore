@@ -1,3 +1,4 @@
 .idea
-.pages
-.pdf
+ *.pages
+ *.pdf
+.DS_Store
