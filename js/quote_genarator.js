@@ -1,5 +1,6 @@
 const p = document.createElement('p');
 const button = document.createElement('button');
+const buttonClear = document.createElement('button');
 const container = document.getElementById('quote_container');
 const form = document.createElement('form');
 const amountInput = document.createElement('input');
@@ -14,8 +15,14 @@ form.appendChild(amountInput);
 form.appendChild(button);
 
 button.innerHTML = 'Print Quote';
+buttonClear.innerHTML = 'Clear Quote';
 
-p.innerHTML = 'Select and amount of Quotes and which type you would like';
+let startMessage = 'Select and amount of Quotes and which type you would like';
+let errorNoQuote = 'Please choose the type of quote';
+let errorNoAmount = 'Please choose an amount';
+let errorValue = 'Sorry you can only between 1 and 5 quotes';
+let printMore = 'Print more Quotes';
+p.innerHTML = startMessage;
 p.className = "message";
 
 /*
@@ -60,21 +67,22 @@ function selectAmount(quote) {
     let amount = amountInput.value;
     p.className = "error";
     if (!quote) {
-        p.innerHTML = 'Please choose the type of quote';
+        p.innerHTML = errorNoQuote;
     }
     else if (!amount) {
-        p.innerHTML = 'Please choose an amount';
+        p.innerHTML = errorNoAmount
     }
     else if (amount > 5 || amount <= 0) {
-        p.innerHTML = 'Sorry you can only between 1 and 5 quotes';
+        p.innerHTML = errorValue;
     } else {
         p.innerHTML = '';
         p.className = "quote";
         for (let i = 0; i < amountInput.value; i += 1) {
             showQuotes(quote);
         }
-        button.innerHTML = 'Print more Quotes';
+        button.innerHTML = printMore;
         amountInput.value = '';
+        form.appendChild(buttonClear);
     }
 
 }
@@ -89,6 +97,16 @@ function showQuotes(quote) {
     }
 }
 
+/*
+ event listener that clears the quotes should the user decide he doesn't
+ want to see any more quotes. Once clicked this button is then removed
+ */
+buttonClear.addEventListener('click', (e) => {
+    e.preventDefault();
+    p.innerHTML = startMessage;
+    buttonClear.remove();
+    p.className = "message";
+});
 
 /*
  event listener on submit that gets the value of the radio button and stores it in a variable
@@ -97,6 +115,7 @@ function showQuotes(quote) {
  */
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+    buttonClear.remove();
     let quote = getRadioCheckedValue();
     selectAmount(quote);
 });
