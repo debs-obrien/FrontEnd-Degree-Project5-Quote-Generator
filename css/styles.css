@@ -18,6 +18,7 @@ h1{
     width: 1024px;
     align-content: center;
     padding: 20px;
+    align-items: center;
 }
 p{
     font-size: 2.0rem;
@@ -39,7 +40,6 @@ p{
 }
 form{
     display: flex;
-    margin-left:25%;
 }
 input[type='text']{
     padding: 6px;
