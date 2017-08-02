@@ -39,7 +39,7 @@ p{
 }
 form{
     display: flex;
-    margin: 0 auto;
+    margin-left:25%;
 }
 input[type='text']{
     padding: 6px;
