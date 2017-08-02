@@ -28,13 +28,14 @@ p{
 .error{
     color:#ff3800;
     text-align:center;
+    text-shadow: -1px 1px #ffffff;
 }
 .message{
     text-align:center;
     color:#fff;
 }
 .quote{
-    color:#fff;
+    color:azure;
 }
 form{
     display: flex;
@@ -68,14 +69,14 @@ button{
     cursor: pointer;
     border: none;
 }
-button:active, input[type='text']:active {
+button:active, input[type='text']:active,
+button:focus, input[type='text']:focus{
     outline: none;
     border: none;
 }
 input[type='radio']{
     margin-left:10px;
-    margin-top: 10px;
-
+    margin-top: 15px;
 }
 label{
     margin-left:10px;
