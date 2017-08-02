@@ -1,18 +1,18 @@
 /*
-Object of Quotes with different fragments or parts of sentences. The describe function
-uses Math.random to get a random number to a max of the length in the array
-newQuote then adds these fragments together and the value is returned
-*/
+ Object of Quotes with different fragments or parts of sentences. The describe function
+ uses Math.random to get a random number to a max of the length in the array
+ newQuote then adds these fragments together and the value is returned
+ */
 
 let newQuote;
 const Quotes = {
-    init: function (fragmentList1, fragmentList2, fragmentList3, fragmentList4){
+    init: function (fragmentList1, fragmentList2, fragmentList3, fragmentList4) {
         this.fragmentList1 = fragmentList1;
         this.fragmentList2 = fragmentList2;
         this.fragmentList3 = fragmentList3;
         this.fragmentList4 = fragmentList4;
     },
-    describe: function(){
+    describe: function () {
         const fragment1 = Math.floor(Math.random() * (this.fragmentList1.length));
         const fragment2 = Math.floor(Math.random() * (this.fragmentList2.length));
         const fragment3 = Math.floor(Math.random() * (this.fragmentList3.length));

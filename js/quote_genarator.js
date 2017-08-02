@@ -19,9 +19,9 @@ p.innerHTML = 'Select and amount of Quotes and which type you would like';
 p.className = "message";
 
 /*
-Creates a radio button and label
+ Creates a radio button and label
  */
-function createRadios(radio, name, value, label, text){
+function createRadios(radio, name, value, label, text) {
     radio = document.createElement('input');
     radio.setAttribute('type', 'radio');
     radio.setAttribute('name', name);
@@ -38,11 +38,11 @@ function createRadios(radio, name, value, label, text){
  call the function to print each radio button and label required
  */
 createRadios('select1', 'type', 'life', 'label1', 'Life');
-createRadios('select2', 'type', 'work','label2', 'Work');
+createRadios('select2', 'type', 'work', 'label2', 'Work');
 
 /*
-Get the value of the radio button that is checked and return it
-*/
+ Get the value of the radio button that is checked and return it
+ */
 function getRadioCheckedValue() {
     let radios = document.getElementsByName('type');
     for (let i = 0; i < radios.length; i++) {
@@ -52,25 +52,25 @@ function getRadioCheckedValue() {
     }
 }
 /*
-Select the amount of quotes to be printed and print messages if errors
-Run a for loop for the amount the user has input and run the showQuotes function that many times
+ Select the amount of quotes to be printed and print messages if errors
+ Run a for loop for the amount the user has input and run the showQuotes function that many times
  */
-function selectAmount(quote){
+function selectAmount(quote) {
     amountInput.setAttribute('value', amountInput.value);
     let amount = amountInput.value;
     p.className = "error";
-    if(!quote){
-        p.innerHTML= 'Please choose the type of quote';
+    if (!quote) {
+        p.innerHTML = 'Please choose the type of quote';
     }
-    else if(!amount){
-        p.innerHTML= 'Please choose an amount';
+    else if (!amount) {
+        p.innerHTML = 'Please choose an amount';
     }
-    else if(amount > 5 || amount <= 0){
-        p.innerHTML= 'Sorry you can only between 1 and 5 quotes';
-    }else{
-        p.innerHTML ='';
+    else if (amount > 5 || amount <= 0) {
+        p.innerHTML = 'Sorry you can only between 1 and 5 quotes';
+    } else {
+        p.innerHTML = '';
         p.className = "quote";
-        for(let i=0; i<amountInput.value; i+=1){
+        for (let i = 0; i < amountInput.value; i += 1) {
             showQuotes(quote);
         }
         button.innerHTML = 'Print more Quotes';
@@ -79,21 +79,21 @@ function selectAmount(quote){
 
 }
 /*
-print the quote depending on which quote has been choosen
+ print the quote depending on which quote has been choosen
  */
-function showQuotes(quote){
-    if(quote==='life'){
+function showQuotes(quote) {
+    if (quote === 'life') {
         p.innerHTML += life.describe() + "<br>";
-    }else{
+    } else {
         p.innerHTML += work.describe() + "<br>";
     }
 }
 
 
 /*
-event listener on submit that gets the value of the radio button and stores it in a variable
-this is then passed to the select Amount function so that we know which quote to print
-as this value is then passed down to the showQuotes function
+ event listener on submit that gets the value of the radio button and stores it in a variable
+ this is then passed to the select Amount function so that we know which quote to print
+ as this value is then passed down to the showQuotes function
  */
 form.addEventListener('submit', (e) => {
     e.preventDefault();
