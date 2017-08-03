@@ -17,7 +17,7 @@ form.appendChild(button);
 button.innerHTML = 'Print Quote';
 buttonClear.innerHTML = 'Clear Quote';
 
-let startMessage = 'Select and amount of Quotes and which type you would like';
+let startMessage = 'Select an amount of Quotes and which type you would like';
 let errorNoQuote = 'Please choose the type of quote';
 let errorNoAmount = 'Please choose an amount';
 let errorValue = 'Sorry you can only between 1 and 5 quotes';
